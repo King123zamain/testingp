@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  
+  <title>Frontend Mentor | [Challenge Name Here]</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+    html{
+      box-sizing:border-box;
+    }
+
+    *,*:before,*:after{
+      box-sizing:inherit;
+    }
+    body{
+      width:100%;
+      margin:0;
+      padding:0;
+      font-family: 'Inter', sans-serif;
+      background-color: hsl(0, 0%, 100%);
+      font-size:14px;
+      font-weight: 700;
+    }
+
+
+    .Dashboard-section{
+      color :hsl(230, 10%, 46%);
+      padding-top:5px;
+    }
+    
+    .first-container{   
+      width:90%;
+      margin:0 auto;
+    }
+
+    .social-head{
+      color: hsl(230, 17%, 14%);
+      margin-bottom: 0;
+      font-size:30px;
+    }
+
+    .social-content p{
+      margin-top:5px;
+    }
+
+
+    .slider-content{
+      width:97%;
+      display: flex;
+      justify-content: flex-end;
+      gap:10px;
+      align-items: center;
+    }
+
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width:60px;
+      height: 30px;
+    }
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color:hsl(229, 17%, 82%) ;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    .slider:before ,.slider.minus:before {
+      position: absolute;
+      content: "";
+      height: 24px;
+      width: 24px;
+      left: 4px;
+      bottom: 3px;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    .slider:before{
+      background-color: white;
+    }
+    .slider.dark:before{
+      background-color:hsl(232, 19%, 15%);
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+      
+    }
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+    .slider.round:hover{
+      opacity: 0.5;
+    }
+    .slider.round:before {
+      border-radius: 50%;
+    }
+
+    .review-row{
+      text-align: center;
+      padding-top:20px;
+      display:grid;
+      grid-template-columns:repeat(4,auto);
+      column-gap:17px;
+    }
+      
+    .review-content{
+      background-color:hsl(227, 47%, 96%);
+      border-radius: 10px;
+      text-align: center;
+      padding:15px;
+      width:90%;
+      height:70%;
+
+    }
+
+    .review-content:hover{
+      cursor: pointer;
+    }
+
+
+    .blue-colored{
+      border-top: 5px solid hsl(210, 78%, 56%);
+    }
+
+    .insta-colored{
+      border-top: 5px solid ;
+      border-image-source:linear-gradient(to right,hsl(37, 97%, 70%),hsl(329, 70%, 58%))  ;
+      border-image-slice: 1;
+    }
+ 
+    .yt-colored{
+      border-top: 5px solid hsl(348, 97%, 39%);
+    }
+    
+
+    .social-details h2{
+      font-size: 70px;
+      margin-top:9px;
+    }
+
+
+    .row-2{
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .spaced{
+      margin-top:15px;
+    }
+    
+    .follow{
+      text-transform: uppercase;
+      font-weight: 400;
+      letter-spacing: 2.8px;
+      margin-top: 0;
+      position: relative; 
+      top:-60px;
+               
+    }
+    
+    .social-names ,.social-rate {
+      margin:0 auto;
+    }
+
+    .social-names{
+      width:43%;        
+    }
+
+    .social-rate{
+      width:37%;
+      padding-bottom:80px;
+    } 
+
+    .high-rate{
+      color:hsl(146, 68%, 55%);
+    }
+    .down-rate{
+      color:hsl(348, 97%, 39%);
+    }
+
+    .overview-section{
+      padding-bottom:60px;
+    }
+
+    .second-container{   
+      width:90%;
+      margin:0 auto;
+    }
+
+    .head-over{
+      color:hsl(230, 10%, 46%);
+      margin-bottom: 30px;
+    }
+
+    .overview-content{
+      width:90%;
+      height:60%;
+      background-color:hsl(227, 47%, 96%);
+      border-radius: 10px;
+      color:hsl(230, 10%, 46%);
+      padding:21px 0;
+      display:flex;
+      align-items: center;
+    }
+    
+    .dashboard-content{
+      display: grid;
+      column-gap:17px;
+      row-gap:1px;
+      grid-template-columns: repeat(4,auto);
+      text-align: center;
+    }
+    
+
+    .details-over{
+      width:50%;
+      font-size:16px;
+      display: flex;
+      flex-direction: column;
+      align-items:center;
+      gap:25px;
+    }
+
+    .details-over h2{
+      font-size:25px;
+    }
+
+    
+
+    .social-img{
+      margin-top: 25px;
+    }
+    @media (min-width:700px) and (max-width:1199px)
+    {
+      .first-container,.second-container{
+        width:50%;
+      }
+    }
+
+    @media (min-width:1200px)
+    {
+
+      .dashboard-row,.review-row,.dashboard-content{
+        display:flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        row-gap: 20px;
+      }
+      .slider-content{
+        width:13%;
+      }
+      .review-content,.overview-content
+      {
+        width:22%;
+      }
+      .spaced{
+        margin-top: 0;
+      }
+ 
+    }
+
+  
+    
+    
+    
+  </style>
+</head>
+<body>
+  <section class="Dashboard-section"> 
+    <div class="first-container">
+
+      <div class="dashboard-row">
+        <div class="social-content">
+          <h1 id="social-head" class="social-head"> Social Media Dashboard</h1>
+          <p>Total Followers: 23,004</p>
+        </div>
+        <div class="slider-content">
+          <span>Dark Mode</span>
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round" onclick="slideChange()"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="review-row">
+
+        <div class="review-content blue-colored" onmouseover="changeback(this)" onmouseout="normback(this)">
+          <div class="social-details">
+            <div class="social-names row-2">
+              <img src="images/icon-facebook.svg" alt="social-img">
+              <p>@nathanf</p>
+            </div>
+            <h2>1987</h2>
+            <p class="follow">Followers</p>
+            <div class="social-rate row-2">
+              <img src="images/icon-up.svg" alt="arrow-icon">
+              <p class="high-rate"> 12 Today</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-content blue-colored spaced" onmouseover="changeback(this)" onmouseout="normback(this)">
+          <div class="social-details">
+            <div class="social-names row-2">
+              <img src="images/icon-twitter.svg" alt="social-img">
+              <p>@nathanf</p>
+            </div>
+            <h2>1044</h2>
+            <p class="follow">Followers</p>
+            <div class="social-rate row-2">
+              <img src="images/icon-up.svg" alt="arrow-icon">
+              <p class="high-rate">99 Today</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-content insta-colored spaced" onmouseover="changeback(this)" onmouseout="normback(this)">
+          <div class="social-details">
+            <div class="social-names row-2">
+              <img src="images/icon-instagram.svg" alt="social-img">
+              <p>@realnathanf</p>
+            </div>
+            <h2>11k</h2>
+            <p class="follow">Followers</p>
+            <div class="social-rate row-2">
+              <img src="images/icon-up.svg" alt="arrow-icon">
+              <p class="high-rate">1099 Today</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="review-content yt-colored spaced" onmouseover="changeback(this)" onmouseout="normback(this)">
+          <div class="social-details">
+            <div class="social-names row-2">
+              <img src="images/icon-youtube.svg" alt="social-img">
+              <p>Nathan F.</p>
+            </div>
+            <h2>8239</h2>
+            <p class="follow">Subscribers</p>
+            <div class="social-rate row-2">
+              <img src="images/icon-down.svg" alt="arrow-icon">
+              <p class="down-rate">144 Today</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="overview-section">
+    <div class="second-container">
+      <h2 class="head-over">Overview - Today</h2>
+
+      <div class="dashboard-content row">
+
+        <div class="overview-content" onmouseover="changeback(this)" onmouseout="normback(this)">
+          <div class="details-over">
+            <p>Page Views</p>
+            <h2>87</h2>
+          </div>
+          <div class="details-over">
+            <img src="images/icon-facebook.svg" alt="social-img" class="social-img">
+            <div class="social-rates row-2">
+              <img src="images/icon-up.svg" alt="arrow-icon">
+              <p class="high-rate">3%</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="overview-content spaced" onmouseover="changeback(this)" onmouseout="normback(this)">
+          <div class="details-over">
+            <p >Likes</p>
+            <h2>52</h2>
+          </div>
+          <div class="details-over">
+            <img src="images/icon-facebook.svg" alt="social-img" class="social-img">
+            <div class="social-rates row-2">
+              <img src="images/icon-down.svg" alt="arrow-icon">
+              <p class="down-rate">2%</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="overview-content spaced" onmouseover="changeback(this)" onmouseout="normback(this)">
+          <div class="details-over">
+            <p >Likes</p>
+            <h2>5462</h2>
+          </div>
+          <div class="details-over">
+            <img src="images/icon-instagram.svg" alt="social-img" class="social-img">
+            <div class="social-rates row-2">
+              <img src="images/icon-up.svg" alt="arrow-icon">
+              <p class="high-rate">2257%</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="overview-content spaced" onmouseover="changeback(this)" onmouseout="normback(this)" >
+          <div class="details-over">
+            <p >Profile Views</p>
+            <h2>52k</h2>
+          </div>
+          <div class="details-over">
+            <img src="images/icon-instagram.svg" alt="social-img" class="social-img">
+            <div class="social-rates row-2">
+              <img src="images/icon-up.svg" alt="arrow-icon">
+              <p class="high-rate">1375%</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="overview-content spaced" onmouseover="changeback(this)" onmouseout="normback(this)">
+          <div class="details-over">
+            <p >Retweets</p>
+            <h2>117</h2>
+          </div>
+          <div class="details-over">
+            <img src="images/icon-twitter.svg" alt="social-img" class="social-img">
+            <div class="social-rates row-2">
+              <img src="images/icon-up.svg" alt="arrow-icon">
+              <p class="high-rate">303%</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="overview-content rrow spaced" onmouseover="changeback(this)" onmouseout="normback(this)">
+          <div class="details-over">
+            <p >Likes</p>
+            <h2>507</h2>
+          </div>
+          <div class="details-over">
+            <img src="images/icon-twitter.svg" alt="social-img" class="social-img">
+            <div class="social-rates row-2">
+              <img src="images/icon-up.svg" alt="arrow-icon">
+              <p class="high-rate">553%</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="overview-content rrow spaced" onmouseover="changeback(this)" onmouseout="normback(this)" >
+          <div class="details-over">
+            <p >Likes</p>
+            <h2>107</h2>
+          </div>
+          <div class="details-over">
+            <img src="images/icon-youtube.svg" alt="social-img" class="social-img">
+            <div class="social-rates row-2">
+              <img src="images/icon-down.svg" alt="arrow-icon">
+              <p class="down-rate">19%</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="overview-content rrow spaced" onmouseover="changeback(this)" onmouseout="normback(this)">
+          <div class="details-over">
+            <p >Total Views</p>
+            <h2>1407</h2>
+          </div>
+          <div class="details-over">
+            <img src="images/icon-youtube.svg" alt="social-img" class="social-img">
+            <div class="social-rates row-2">
+              <img src="images/icon-down.svg" alt="arrow-icon">
+              <p class="down-rate">12%</p>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </div>
+    
+  </section>
+  
+  <script>
+      function slideChange(){
+          var check_color=document.getElementsByClassName("slider")[0].style.backgroundImage;
+          var social_len= document.getElementsByClassName("social-head").length;
+          if(check_color==""||check_color=="unset")
+          {
+              document.body.style.backgroundColor = "hsl(232, 19%, 15%)";
+              document.getElementsByClassName("slider")[0].classList.add("dark");
+
+              document.getElementsByClassName("slider")[0].style.backgroundColor="unset";
+              document.getElementsByClassName("slider")[0].style.backgroundImage="linear-gradient(hsl(210, 78%, 56%),hsl(146, 68%, 55%))";
+              for(i=0;i<social_len;i++)
+              {
+                  document.getElementsByClassName("social-head")[i].style.color="hsl(0, 0%, 100%)";
+              }
+              for(i=0;i<document.getElementsByTagName("h2").length;i++)
+              {
+                  document.getElementsByTagName("h2")[i].style.color="hsl(0, 0%, 100%)";
+              }
+              for(i=0;i<document.getElementsByClassName("review-content").length;i++)
+              {
+                  document.getElementsByClassName("review-content")[i].style.backgroundColor=" hsl(228, 28%, 20%)";
+              }
+              for(i=0;i<document.getElementsByClassName("overview-content").length;i++)
+              {
+                  document.getElementsByClassName("overview-content")[i].style.backgroundColor=" hsl(228, 28%, 20%)";
+              }
+           }
+           else{
+               document.getElementsByClassName('slider')[0].classList.remove("dark");
+               document.body.style.backgroundColor ="hsl(0, 0%, 100%)";
+               document.getElementsByClassName("slider")[0].style.backgroundColor="hsl(229, 17%, 82%)";
+               document.getElementsByClassName("slider")[0].style.backgroundImage="unset";
+               for(i=0;i<social_len;i++)
+               {
+                   document.getElementsByClassName("social-head")[i].style.color="hsl(230, 17%, 14%)";
+               }
+               for(i=0;i<document.getElementsByTagName("h2").length;i++)
+               {
+                   document.getElementsByTagName("h2")[i].style.color="hsl(0, 0%, 0%)";
+               }
+               for(i=0;i<document.getElementsByClassName("review-content").length;i++)
+               {
+                   document.getElementsByClassName("review-content")[i].style.backgroundColor="hsl(227, 47%, 96%)";
+               }
+               for(i=0;i<document.getElementsByClassName("overview-content").length;i++)
+               {
+                   document.getElementsByClassName("overview-content")[i].style.backgroundColor="hsl(227, 47%, 96%)";
+               }
+           }
+      }
+        function changeback(x)
+        {
+            /* to get property for any element exist */
+            const style = getComputedStyle(document.body);
+            const backgroundColor = style.backgroundColor;
+            if(backgroundColor==="rgb(255, 255, 255)")
+            {
+                x.style.backgroundColor="hsl(230, 29%, 88%)"; /*white*/
+
+            }
+            else{
+                x.style.backgroundColor="hsl(240, 21%, 31%)";
+            }
+        }
+        function normback(x)
+        {
+            /* to get property for any element exist */
+            const style = getComputedStyle(x);
+            const backgroundColor = style.backgroundColor;
+            if(backgroundColor==="rgb(216, 218, 233)")
+            {
+                x.style.backgroundColor="hsl(227, 47%, 96%)";
+
+            }
+            else{
+                x.style.backgroundColor="hsl(228, 28%, 20%)";
+            }
+        }
+  </script>
+
+</body>
+</html>
